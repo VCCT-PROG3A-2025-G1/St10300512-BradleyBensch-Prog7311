@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<h2>Add New Farmer</h2>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-success">@ViewBag.Message</div>
+
+    <script>
+        setTimeout(() => {
+            document.querySelector("form").reset();
+            document.getElementById('generatedUsername').value = '';
+        }, 1000);
+    </script>
+}
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+<form asp-action="AdminView" method="post">
+    <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" name="FullName" class="form-control" id="fullName" required />
+    </div>
+
+    <div class="form-group">
+        <label>Location</label>
+        <input type="text" name="Location" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" name="PhoneNumber" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label>Generated Username</label>
+        <input type="text" id="generatedUsername" class="form-control" readonly />
+        <input type="hidden" name="username" id="usernameHidden" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Add Farmer</button>
+</form>
+
+@section Scripts {
+    <script>
+        function generateUsername() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const base = fullName.replace(/\s+/g, '').toLowerCase();
+            const randomNumber = Math.floor(10 + Math.random() * 90); 
+            const username = base + randomNumber;
+            document.getElementById('generatedUsername').value = username;
+            document.getElementById('usernameHidden').value = username; 
+        }
+
+        document.addEventListener('DOMContentLoaded', generateUsername); 
+        document.getElementById('fullName').addEventListener('input', generateUsername); 
+    </script>
+}

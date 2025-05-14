@@ -1,0 +1,67 @@
+﻿@model IEnumerable<St10300512_AgriEnergy.Models.ViewModels.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Farmer Product List";
+    var userRole = Context.Session.GetString("Role");
+}
+
+<h2>Farmer Product List</h2>
+
+@if (userRole == "Employee")
+{
+    <form asp-action="FarmerView" method="get" class="mb-3">
+        <div class="form-row row g-2 align-items-end">
+            <div class="col-md-3">
+                <label for="categoryFilter" class="form-label">Category</label>
+                <input type="text" name="categoryFilter" class="form-control" placeholder="e.g. Tech" />
+            </div>
+            <div class="col-md-3">
+                <label for="farmerFilter" class="form-label">Farmer</label>
+                <input type="text" name="farmerFilter" class="form-control" placeholder="e.g. John Doe" />
+            </div>
+            <div class="col-md-3">
+                <label for="startDate" class="form-label">Start Date</label>
+                <input type="date" name="startDate" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label for="endDate" class="form-label">End Date</label>
+                <input type="date" name="endDate" class="form-control" />
+            </div>
+            
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary w-100">Filter</button>
+            </div>
+        </div>
+    </form>
+}
+
+@if (!Model.Any())
+{
+    <p>No products found with the selected filters.</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Production Date</th>
+                <th>Farmer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var product in Model)
+            {
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Category</td>
+                    <td>@product.ProductionDate.ToShortDateString()</td>
+                    <td>@product.FarmerName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

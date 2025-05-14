@@ -12,3 +12,5 @@ How to access or use this application:
 3. You may need to update the connection string in the appsettings.json file to match your local database configuration.
 4. After updating the connection string, you may need to run the database migrations to create the necessary tables in your database.
 5. Your project should be ready to run. You can start the application by pressing F5 or using the command line to run the project.
+6. Example data for Employee: Username: admin, Password: password1
+7. Example data for Farmer: Username: farmer, Password: password1

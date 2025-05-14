@@ -3,7 +3,7 @@ Agri-Energy Connect - Bradley Bensch St10300512 PROG7311
 This application is used by Farmers to connect with others and list products as well as services they offer. Its main goal is to bridge the gap
 between the agricultural sector and green energy technology providers.
 
-Github Link:
+Github Link: https://github.com/ST10300512/St10300512-AgriEnergy
 
 How to access or use this application:
 1. Clone the repository to your local machine with the link provided above. Or Unzip the compressed file provided with the project solution and all

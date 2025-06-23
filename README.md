@@ -1,16 +1,72 @@
-Agri-Energy Connect - Bradley Bensch St10300512 PROG7311
+Agri-Energy Connect - Bradley Bensch (ST10300512)
+Module: PROG7311
 
-This application is used by Farmers to connect with others and list products as well as services they offer. Its main goal is to bridge the gap
-between the agricultural sector and green energy technology providers.
+This application enables farmers to connect with each other and with green energy technology providers. Its goal is to bridge the gap between the agricultural sector and green technology services.
 
-Github Link: https://github.com/ST10300512/St10300512-AgriEnergy
+GitHub Repository:
+https://github.com/ST10300512/St10300512-AgriEnergy
 
-How to access or use this application:
-1. Clone the repository to your local machine with the link provided above. Or Unzip the compressed file provided with the project solution and all
-   the necessary files.
-2. Open the project using Visual Studio 2022 or any other IDE that supports .NET Core.
-3. You may need to update the connection string in the appsettings.json file to match your local database configuration.
-4. After updating the connection string, you may need to run the database migrations to create the necessary tables in your database.
-5. Your project should be ready to run. You can start the application by pressing F5 or using the command line to run the project.
-6. Example data for Employee: Username: admin, Password: password1
-7. Example data for Farmer: Username: farmer, Password: password1
+Getting Started
+
+1.) Clone or Download the Project
+
+   Option 1: Clone from GitHub:
+		https://github.com/ST10300512/St10300512-AgriEnergy.git
+
+   Option 2: Extract the provided ZIP file with the complete solution.
+
+2.)Open the Solution
+
+   Open the project in Visual Studio 2022 (or later), or another compatible IDE supporting .NET 8.0.
+
+3.)Attach the Database (AgriEnergyDB)
+
+   The project uses a pre-created SQL Server LocalDB database (AgriEnergyDB.mdf).
+
+   Included Database Files in App_Data:
+
+   AgriEnergyDB.mdf
+
+   AgriEnergyDB_log.ldf
+
+Steps to Attach the Database using SQL Server Management Studio (SSMS):
+
+   Open SQL Server Management Studio (SSMS).
+
+   Connect to (localdb)\MSSQLLocalDB.
+
+   Right-click Databases -> Attach...
+
+   Click 'Add' -> Navigate to the provided .mdf file -> Select 'AgriEnergyDB.mdf'.
+
+   Click OK to attach the database.
+
+   Confirm that 'AgriEnergyDB' appears under Databases.
+
+Update the Connection String if neccesary:
+
+   Open appsettings.json in the project and confirm the connection string:
+
+   "ConnectionStrings": {
+   "DefaultConnection": "Server=(localdb)\MSSQLLocalDB;Database=AgriEnergyDB;Integrated Security=True;MultipleActiveResultSets=true"
+   }
+
+No changes should be necessary if using LocalDB with default configuration.
+
+4.)Run the Application
+
+   Press F5 in Visual Studio or use the terminal to run the project.
+
+5.)Example Login Details
+
+   Employee:
+
+   Username: admin
+
+   Password: password1
+
+   Farmer:
+
+   Username: farmer
+
+   Password: password1

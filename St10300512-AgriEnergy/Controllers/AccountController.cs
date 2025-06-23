@@ -13,59 +13,48 @@ namespace St10300512_AgriEnergy.Controllers
             _context = context;
         }
 
-        public IActionResult LoginView()
+        [HttpGet]
+        public IActionResult Login()
         {
-            return View();
+            return View("LoginView"); // Explicitly using LoginView.cshtml
         }
 
-        [HttpPost]
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
             try
             {
-                // Get user by username
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == username);
 
                 if (user != null)
                 {
-                    // Check password
-                    if (user.Password == password) 
+                    if (user.Password == password)
                     {
-                        // Set session values
                         HttpContext.Session.SetString("Username", user.Username);
                         HttpContext.Session.SetString("Role", user.Role);
                         HttpContext.Session.SetString("UserId", user.UserId.ToString());
 
-                        // Successful login
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        // Invalid password
                         ModelState.AddModelError(string.Empty, "Invalid password.");
                     }
                 }
                 else
                 {
-                    // User not found
                     ModelState.AddModelError(string.Empty, "Invalid username.");
                 }
 
-                // Return the view with the errors
-                return View();
+                return View("LoginView"); // Also explicitly rendering LoginView.cshtml on failure
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Login error: {ex.Message}"); 
-                Console.WriteLine($"Stack Trace: {ex.StackTrace}"); 
-                ViewBag.Error = $"An error occurred during login: {ex.Message}";  // Show the error message to the user
-                return View();
+                Console.WriteLine($"Login error: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                ViewBag.Error = $"An error occurred during login: {ex.Message}";
+                return View("LoginView");
             }
         }
-
-
-
     }
-
 }
